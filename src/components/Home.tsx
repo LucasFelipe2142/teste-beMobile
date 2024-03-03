@@ -25,7 +25,7 @@ const TabelaFuncionarios: React.FC = () => {
       setFuncionarios(response.data);
     } catch (error) {
       console.error(
-        "Error fetching employee table data:",
+        "Erro ao recuperar os dados da tabela de funcionários:",
         error
       );
     }
@@ -44,7 +44,7 @@ const TabelaFuncionarios: React.FC = () => {
       <Container>
         <Content>
           <TitleContainer>
-            <h2>Employees</h2>
+            <h2>Funcionários</h2>
             <InputPesquisa
               termoPesquisa={termoPesquisa}
               handleTermoPesquisaChange={handleTermoPesquisaChange}
