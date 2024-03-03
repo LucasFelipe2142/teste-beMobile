@@ -42,4 +42,4 @@ Siga os passos abaixo para executar a aplicação localmente:
 
    Após seguir os passos acima, a aplicação estará disponível em [http://localhost:5173/]
 
-
+# teste-beMobile
