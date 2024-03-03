@@ -30,6 +30,9 @@ footer, header, hgroup, menu, nav, section {
 body {
 	width: 100%;
 	line-height: 1;
+	*:focus {
+  outline: none;
+}
 }
 ol, ul {
 	list-style: none;
