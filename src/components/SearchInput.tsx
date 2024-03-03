@@ -30,6 +30,10 @@ const InputContainer = styled.div`
   position: relative;
   width: 287px;
   height: 48px;
+  @media (max-width: 700px) {
+    width: 100%;
+    margin-top:28px;
+  }
 `;
 
 const Input = styled.input`

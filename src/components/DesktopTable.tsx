@@ -9,7 +9,7 @@ interface Props {
 
 const Tabela: React.FC<Props> = ({ funcionarios }) => {
   return (
-    <StyledTable>
+    <StyledTableDesktop>
       <thead>
         <tr>
           <TableHeader>Foto</TableHeader>
@@ -34,13 +34,13 @@ const Tabela: React.FC<Props> = ({ funcionarios }) => {
           </TableRow>
         ))}
       </tbody>
-    </StyledTable>
+    </StyledTableDesktop>
   );
 };
 
 export default Tabela;
 
-const StyledTable = styled.table`
+const StyledTableDesktop = styled.table`
   width: 100%;
   border-collapse: collapse;
   border-radius: 8px 8px 0px 0px;

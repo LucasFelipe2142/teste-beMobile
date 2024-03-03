@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Funcionario } from "../interfaces/Funcionarios";
 import { TbPointFilled } from "react-icons/tb";
+import { IoIosArrowDown } from "react-icons/io";
 
 interface Props {
   funcionarios: Funcionario[];
@@ -24,6 +25,8 @@ const MobileTable: React.FC<Props> = ({ funcionarios }) => {
               <Image src={funcionario.image} alt={funcionario.name} />
             </TableCell>
             <TableCell>{funcionario.name}</TableCell>
+            <TableCell><IoIosArrowDown /></TableCell>
+            
           </TableRow>
         ))}
       </tbody>
@@ -40,6 +43,9 @@ const StyledTable = styled.table`
   gap: 125px;
   background: linear-gradient(180deg, #5a84c0 0%, #594ed2 100%);
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  @media (min-width: 700px) {
+    display: none;
+  }
 `;
 
 const TableHeader = styled.th`
