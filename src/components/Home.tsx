@@ -70,7 +70,7 @@ const Container = styled.div`
   h2 {
     color: rgba(28, 28, 28, 1);
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 28px;
     letter-spacing: 0px;
     text-align: left;
