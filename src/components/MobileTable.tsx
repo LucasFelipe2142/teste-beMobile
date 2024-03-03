@@ -9,12 +9,15 @@ interface Props {
   funcionarios: Funcionario[];
 }
 
+// Component for rendering the mobile version of the table
 const MobileTable: React.FC<Props> = ({ funcionarios }) => {
+  // State variables to manage open/closed state of dropdown rows
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
   const [bottomLineVisibility, setBottomLineVisibility] = useState<boolean[]>(
     new Array(funcionarios.length).fill(false)
   );
 
+  // Function to toggle the dropdown for a specific row
   const toggleDropdown = (index: number) => {
     if (openIndexes.includes(index)) {
       setOpenIndexes(openIndexes.filter((i) => i !== index));
@@ -41,6 +44,7 @@ const MobileTable: React.FC<Props> = ({ funcionarios }) => {
       <tbody>
         {funcionarios.map((funcionario, index) => (
           <React.Fragment key={funcionario.id}>
+            {/* Row for toggling dropdown */}
             <TableRow onClick={() => toggleDropdown(index)}>
               <TableCell>
                 <Image src={funcionario.image} alt={funcionario.name} />
@@ -54,10 +58,12 @@ const MobileTable: React.FC<Props> = ({ funcionarios }) => {
                 )}
               </ToggleIconCell>
             </TableRow>
+            {/* Dropdown content */}
             {openIndexes.includes(index) && (
               <DropdownRow>
                 <DropdownCell colSpan={3}>
                   <DropdownContent>
+                    {/* Displayed data in dropdown */}
                     <DropDownLine>
                       <p>Cargo</p>
                       <h3>{funcionario.job}</h3>
@@ -75,6 +81,7 @@ const MobileTable: React.FC<Props> = ({ funcionarios }) => {
                       <h3>{formatPhoneNumber(funcionario.phone)}</h3>
                     </DropDownLine>
                   </DropdownContent>
+                  {/* Dotted line separator */}
                   <DottedLine />
                 </DropdownCell>
               </DropdownRow>
@@ -88,6 +95,7 @@ const MobileTable: React.FC<Props> = ({ funcionarios }) => {
 
 export default MobileTable;
 
+// Styled components for the mobile table
 const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;

@@ -9,7 +9,8 @@ O Teste Técnico para Front-End da Be consiste em construir a visualização de 
 - Node.js
 - React
 - npm
-- typescript
+- vite
+
 
 ## Instruções para Rodar a Aplicação
 
@@ -18,7 +19,7 @@ Siga os passos abaixo para executar a aplicação localmente:
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seu-usuario/seu-projeto.git
+   git clone https://github.com/LucasFelipe2142/teste-beMobile/blob/main/README.md
    ```
 
 2. **Instale as dependências:**
@@ -39,6 +40,6 @@ Siga os passos abaixo para executar a aplicação localmente:
 
 4. **Acessar a aplicação:**
 
-   Após seguir os passos acima, a aplicação estará disponível em [http://localhost:3000](http://localhost:3000) (ou outra porta, se especificada).
+   Após seguir os passos acima, a aplicação estará disponível em [http://localhost:5173/]
 
-# teste-beMobile
+

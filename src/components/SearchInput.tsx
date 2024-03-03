@@ -3,22 +3,25 @@ import styled from "styled-components";
 import { IoIosSearch } from "react-icons/io";
 
 interface Props {
-  termoPesquisa: string;
-  handleTermoPesquisaChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  termoPesquisa: string; // The search term
+  handleTermoPesquisaChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // Function to handle search term change
 }
 
+// Search input component
 const InputPesquisa: React.FC<Props> = ({
   termoPesquisa,
   handleTermoPesquisaChange,
 }) => {
   return (
     <InputContainer>
+      {/* Input field for search term */}
       <Input
         type="text"
         placeholder="Pesquisar"
         value={termoPesquisa}
         onChange={handleTermoPesquisaChange}
       />
+      {/* Search icon */}
       <IconSearch />
     </InputContainer>
   );
@@ -26,13 +29,14 @@ const InputPesquisa: React.FC<Props> = ({
 
 export default InputPesquisa;
 
+// Styled components for input and search icon
 const InputContainer = styled.div`
   position: relative;
   width: 287px;
   height: 48px;
   @media (max-width: 700px) {
     width: 100%;
-    margin-top:28px;
+    margin-top: 28px;
   }
 `;
 

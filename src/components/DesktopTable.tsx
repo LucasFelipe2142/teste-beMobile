@@ -3,20 +3,22 @@ import styled from "styled-components";
 import { Funcionario } from "../interfaces/Funcionarios";
 import formatPhoneNumber from "../utils/FormatPhoneNumber";
 
+// Definition of the properties that the Tabela component receives
 interface Props {
   funcionarios: Funcionario[];
 }
 
+// Functional component Tabela that renders the list of employees in a table
 const Tabela: React.FC<Props> = ({ funcionarios }) => {
   return (
     <StyledTableDesktop>
       <thead>
         <tr>
-          <TableHeader>Foto</TableHeader>
-          <TableHeader>Nome</TableHeader>
-          <TableHeader>Cargo</TableHeader>
-          <TableHeader>Data de Admissão</TableHeader>
-          <TableHeader>Telefone</TableHeader>
+          <TableHeader>Photo</TableHeader>
+          <TableHeader>Name</TableHeader>
+          <TableHeader>Position</TableHeader>
+          <TableHeader>Hire Date</TableHeader>
+          <TableHeader>Phone</TableHeader>
         </tr>
       </thead>
       <tbody>
@@ -40,6 +42,7 @@ const Tabela: React.FC<Props> = ({ funcionarios }) => {
 
 export default Tabela;
 
+// Styling of the Tabela component and its child elements using styled-components
 const StyledTableDesktop = styled.table`
   width: 100%;
   border-collapse: collapse;

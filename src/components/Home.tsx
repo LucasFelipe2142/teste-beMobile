@@ -7,26 +7,31 @@ import Tabela from "./DesktopTable";
 import MobileTable from "./MobileTable";
 import { filtrarFuncionarios } from "../utils/SearchEmployees";
 
+// Component to display employee data
 const TabelaFuncionarios: React.FC = () => {
+  // State variables to store employee data and search term
   const [funcionarios, setFuncionarios] = useState([]);
   const [termoPesquisa, setTermoPesquisa] = useState("");
 
+  // Fetch employee data from the server on component mount
   useEffect(() => {
     fetchFuncionarios();
   }, []);
 
+  // Function to fetch employee data from the server
   const fetchFuncionarios = async () => {
     try {
       const response = await axios.get("http://localhost:3000/employees");
       setFuncionarios(response.data);
     } catch (error) {
       console.error(
-        "Erro ao recuperar os dados da tabela de funcionários:",
+        "Error fetching employee table data:",
         error
       );
     }
   };
 
+  // Function to handle changes in the search term input
   const handleTermoPesquisaChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -39,17 +44,19 @@ const TabelaFuncionarios: React.FC = () => {
       <Container>
         <Content>
           <TitleContainer>
-            <h2>Funcionários</h2>
+            <h2>Employees</h2>
             <InputPesquisa
               termoPesquisa={termoPesquisa}
               handleTermoPesquisaChange={handleTermoPesquisaChange}
             />
           </TitleContainer>
+          {/* Conditionally render desktop table based on screen size */}
           <div className="isNone">
             <Tabela
               funcionarios={filtrarFuncionarios(funcionarios, termoPesquisa)}
             />
           </div>
+          {/* Always render mobile table */}
           <MobileTable
             funcionarios={filtrarFuncionarios(funcionarios, termoPesquisa)}
           />
@@ -61,6 +68,7 @@ const TabelaFuncionarios: React.FC = () => {
 
 export default TabelaFuncionarios;
 
+// Styled components for layout and styling
 const Container = styled.div`
   width: 100%;
   display: flex;
