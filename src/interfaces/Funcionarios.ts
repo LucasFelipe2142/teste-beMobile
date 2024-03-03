@@ -5,5 +5,6 @@ export interface Funcionario {
     job: string;
     admission_date: string;
     phone: string;
+    image : string;
   }
   
