@@ -3,9 +3,12 @@ import axios from "axios";
 import styled from "styled-components";
 import { Funcionario } from "../interfaces/Funcionarios";
 import Header from "./header";
+import { filtrarFuncionarios } from "../utils/buscaFuncionarios";
+import { IoIosSearch } from "react-icons/io";
 
 const TabelaFuncionarios: React.FC = () => {
   const [funcionarios, setFuncionarios] = useState<Funcionario[]>([]);
+  const [termoPesquisa, setTermoPesquisa] = useState<string>("");
 
   useEffect(() => {
     axios
@@ -22,11 +25,29 @@ const TabelaFuncionarios: React.FC = () => {
       });
   }, []);
 
+  const handleTermoPesquisaChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTermoPesquisa(e.target.value);
+  };
+
   return (
     <Container>
       <Header />
       <Content>
-        <h2>Funcionários</h2>
+      <TitleContainer>
+          <h2>Funcionários</h2>
+          <InputContainer>
+            <InputPesquisa
+              type="text"
+              placeholder="Pesquisar"
+              value={termoPesquisa}
+              onChange={handleTermoPesquisaChange} 
+            />
+            <IconSearch />
+          </InputContainer>
+        </TitleContainer>
+
         <StyledTable>
           <thead>
             <tr>
@@ -38,22 +59,22 @@ const TabelaFuncionarios: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-          {funcionarios?.map((funcionario) => (
-    <React.Fragment key={funcionario.id}>
-      <TableRow>
-        <TableCell>
-          <Image src={funcionario.image} alt={funcionario.name} />
-        </TableCell>
-        <TableCell>{funcionario.name}</TableCell>
-        <TableCell>{funcionario.job}</TableCell>
-        <TableCell>
-          {new Date(funcionario.admission_date).toLocaleDateString()}
-        </TableCell>
-        <TableCell>{funcionario.phone}</TableCell>
-      </TableRow>
-    </React.Fragment>
-))}
-
+            {/* Mapeando e exibindo os funcionários filtrados */}
+            {filtrarFuncionarios(funcionarios, termoPesquisa).map(
+              (funcionario) => (
+                <TableRow key={funcionario.id}>
+                  <TableCell>
+                    <Image src={funcionario.image} alt={funcionario.name} />
+                  </TableCell>
+                  <TableCell>{funcionario.name}</TableCell>
+                  <TableCell>{funcionario.job}</TableCell>
+                  <TableCell>
+                    {new Date(funcionario.admission_date).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell>{funcionario.phone}</TableCell>
+                </TableRow>
+              )
+            )}
           </tbody>
         </StyledTable>
       </Content>
@@ -77,12 +98,17 @@ const Content = styled.div`
   flex-direction: column;
   h2 {
     color: rgba(28, 28, 28, 1);
-    margin-bottom: 40px;
     font-size: 24px;
     font-weight: 600;
     line-height: 28px;
     letter-spacing: 0px;
     text-align: left;
+  }
+  .topNameAndSearch{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
   }
 `;
 
@@ -98,27 +124,56 @@ const StyledTable = styled.table`
 const TableHeader = styled.th`
   color: rgba(255, 255, 255, 1);
   height: 47px;
-  padding: 0 32px; /* Padding de 32px dos dois lados */
+  padding: 14px 32px;
   text-align: left;
   vertical-align: middle;
 `;
 
 const TableCell = styled.td`
-  padding: 0 32px; /* Padding de 32px dos dois lados */
+  padding: 16px 32px;
   text-align: left;
   vertical-align: middle;
 `;
 
 const TableRow = styled.tr`
-  width: 100%; /* Ocupa todo o espaço disponível */
+  width: 960px;
   height: 49px;
   background: rgba(255, 255, 255, 1);
-  border-bottom: 0.5px solid lightgray; /* Espessura e cor da borda ajustadas */
+  border-bottom: 0.5px solid lightgray;
 `;
-
 
 const Image = styled.img`
   width: 34px;
   height: 34px;
   border-radius: 50%;
+`;
+
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 32px;
+`;
+
+const InputContainer = styled.div`
+  position: relative;
+  width: 287px;
+  height: 48px;
+`;
+
+const InputPesquisa = styled.input`
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(223, 223, 223, 1);
+`;
+
+const IconSearch = styled(IoIosSearch)`
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8c8c8c;
 `;
